@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Input and Mirror Show/Hide</title>
+    <style>
+      
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            background-color: #0056b3;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .toggle-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .toggle-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Enter and Show/Hide Password</h2>
+
+        <!-- Password Input -->
+        <input type="password" id="passwordInput" placeholder="Enter Password">
+        <br>
+
+        <!-- Show/Hide Password Input -->
+        <input type="text" id="showPasswordInput" placeholder="Password show/hide" readonly>
+        <br>
+
+        <!-- Button to Toggle Show/Hide -->
+        <button class="toggle-btn" onclick="togglePassword()">Show Password</button>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('passwordInput');
+        const showPasswordInput = document.getElementById('showPasswordInput');
+        const toggleBtn = document.querySelector('.toggle-btn');
+
+        // Update the mirrored input in real-time as the user types
+        passwordInput.addEventListener('input', () => {
+            showPasswordInput.value = passwordInput.value;
+        });
+
+        // Toggle between hiding and showing the mirrored password
+        function togglePassword() {
+            if (showPasswordInput.type === 'text') {
+                showPasswordInput.type = 'password';
+                toggleBtn.textContent = 'Show Password';
+            } else {
+                showPasswordInput.type = 'text';
+                toggleBtn.textContent = 'Hide Password';
+            }
+        }
+    </script>
+
+</body>
+</html>
